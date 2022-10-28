@@ -11,8 +11,7 @@ pipeline {
         
         stage('Checkout') {
             steps {
-                echo "Who is happy cat? => ${HAPPY_CAT}"
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '1a7f5656-8ced-46b4-a61c-0950fbf687c0', url: 'https://github.com/rykng/CrabbyProject.git']]])
+                echo "Done as part of setting up jenkins"
             }
         }
         stage('Build') {
@@ -23,6 +22,7 @@ pipeline {
                 sh '''pip install -r requirements.txt'''
                 echo 'Run unittest'
                 sh '''pytest --junit-xml=report.xml'''
+                junit 'report.xml'
             }
         
         }
@@ -40,6 +40,7 @@ pipeline {
         stage('e2e Test') {
             steps {
                 echo "Going to run e2e Test vs ${ env.GIT_COMMIT } ${env.BUILD_NUMBER}"
+                build 'playwright-demo'
             }
         }
         stage('GateKeeper') {
