@@ -5,7 +5,7 @@ pipeline {
       parallel {
         stage('dev-build') {
           steps {
-            git(url: 'https://github.com/rykng/CrabbyProject.git', branch: '*/main', changelog: true)
+            git(url: 'https://github.com/rykng/CrabbyProject.git', branch: '*/main', credentialsId: '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')
           }
         }
 
