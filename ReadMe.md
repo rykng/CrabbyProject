@@ -8,7 +8,8 @@ python3 -m unittest
 ```
 
 # setup virtual env
+```
 pip install pytest
 pip install pyyaml
 python -m pip install --upgrade pip
-
+```
